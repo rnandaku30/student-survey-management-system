@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CS Department Survey</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #e6f4e6, #d0ecd0);
+            /* Smooth gradient */
+            text-align: center;
+            color: #333;
+        }
+
+        button {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+
+        /* 🌟 Keep existing styling for form */
+        .content {
+            max-width: 700px;
+            margin: 50px auto;
+            text-align: left;
+            padding: 30px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0px 8px 20px rgba(0, 102, 51, 0.3);
+            border: 5px solid #006633;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        /* h1 {
+            color: #006633;
+        } */
+
+        /* 🌟 Make header pop */
+        .header-box {
+            max-width: 800px;
+            /* Slightly wider for balance */
+            margin: 30px auto;
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(to right, #006633, #008f4c);
+            /* Gradient header */
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.8rem;
+            /* Make text bigger */
+            border-radius: 10px;
+            box-shadow: 0px 5px 20px rgba(0, 102, 51, 0.4);
+        }
+
+
+        /* 🔥 Slight Scale & Glow Effect on Hover */
+        .content:hover {
+            transform: scale(1.02);
+            /* Slight pop effect */
+            box-shadow: 0px 10px 30px rgba(0, 102, 51, 0.5);
+            /* Stronger shadow on hover */
+        }
+
+
+
+        /* .header-box {
+            border: 3px solid #006633;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            padding: 30px;
+            background-color: white;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            max-width: 700px;
+        } */
+
+
+
+        /* .content {
+            max-width: 900px;
+            margin: auto;
+            text-align: left;
+            padding: 20px;
+        } */
+
+
+        .greeting {
+            color: #006633;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+
+
+
+        .required:after {
+            content: " *";
+            color: red;
+        }
+
+        .grad-container {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .output-field {
+            background-color: #e9ecef;
+            cursor: not-allowed;
+            color: #6c757d;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: 0.3s ease-in-out;
+        }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        #reset {
+            background-color: #dc3545;
+            border: none;
+        }
+
+        #reset:hover {
+            background-color: #c82333;
+        }
+
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="http://portfolio642.s3-website-us-east-1.amazonaws.com/"
+                style="color: white">Ramyashree Nandakumar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://portfolio642.s3-website-us-east-1.amazonaws.com/"
+                            style="color:white;">
+                            Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="http://ec2-98-84-1-36.compute-1.amazonaws.com/cs_department.html"
+                            style="color:white;">
+                            CS Department
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container mt-5">
+
+        <div class="header-box">
+            <h1>Computer Science Department Survey</h1>
+        </div>
+
+
+        <div class="content">
+            <div id="greeting" class="greeting"></div>
+            <form id="surveyForm" method="post" autocomplete="on">
+
+                <div class="mb-3 row">
+                    <div class="col-md-6">
+                        <label for="firstName" class="form-label required">First Name</label>
+                        <input type="text" id="firstName" class="form-control" required autofocus autocomplete="name">
+                        <div id="name-error" class="error-message"></div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="lastName" class="form-label required">Last Name</label>
+                        <input type="text" id="lastName" class="form-control" required autofocus autocomplete="name">
+                        <div id="name-error" class="error-message"></div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label required">Email</label>
+                    <input type="text" id="email" class="form-control required autocomplete=" email" required>
+                    <div id="email-error" class="error-message"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="telephone" class="form-label required">Telephone</label>
+                    <input type="tel" id="telephone" class="form-control" required placeholder="123-456-7890">
+                    <div id="telephone-error" class="error-message"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="dateOfSurvey" class="form-label required">Date of Survey</label>
+                    <input type="date" id="dateOfSurvey" class="form-control" required>
+                    <div id="dateOfSurvey-error" class="error-message"></div>
+                </div>
+
+
+
+                <div class="mb-3">
+                    <label for="zip" class="form-label required">Zip Code</label>
+                    <input type="text" id="zip" class="form-control" placeholder="12345" autocomplete="postal-code">
+                    <div id="zip-error" class="error-message"></div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label for="address" class="form-label required">Street Address</label>
+                    <input type="text" id="address" class="form-control" required autocomplete="streetAddress">
+                    <div id="address-error" class="error-message"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="city" class="form-label required">City</label>
+                    <input type="text" id="city" class="form-control output-field" autocomplete="address-level2"
+                        disabled>
+                    <div id="city-error" class="error-message"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="state" class="form-label required">State</label>
+                    <input type="text" id="state" class="form-control output-field" autocomplete="address-level2"
+                        disabled>
+                    <div id=" state-error" class="error-message">
+                    </div>
+                </div>
+
+
+                <div class="mb-3">
+                    <label class="form-label">What did you like most about the campus?</label>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="students" class="form-check-input"> <label for="students"
+                            class="form-check-label">Students</label>
+                        <input type="checkbox" id="location" class="form-check-input"> <label for="location"
+                            class="form-check-label">Location</label>
+                        <input type="checkbox" id="atmosphere" class="form-check-input"> <label for="atmosphere"
+                            class="form-check-label">Atmosphere</label>
+                        <input type="checkbox" id="dorms" class="form-check-input"> <label for="dorms"
+                            class="form-check-label">Dorm Rooms</label>
+                        <input type="checkbox" id="sports" class="form-check-input"> <label for="sports"
+                            class="form-check-label">Sports</label>
+                    </div>
+                    <div id="checkbox-error" class="error-message"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">How did you hear about us?</label>
+                    <div class="radio-group">
+                        <input type="radio" name="interest" id="friends" class="form-check-input"> <label for="friends"
+                            class="form-check-label">Friends</label>
+                        <input type="radio" name="interest" id="tv" class="form-check-input"> <label for="tv"
+                            class="form-check-label">Television</label>
+                        <input type="radio" name="interest" id="internet" class="form-check-input"> <label
+                            for="internet" class="form-check-label">Internet</label>
+                        <input type="radio" name="interest" id="other" class="form-check-input"> <label for="other"
+                            class="form-check-label">Other</label>
+                    </div>
+                    <div id="radio-error" class="error-message"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="comments" class="form-label">Additional Comments</label>
+                    <textarea id="comments" class="form-control" rows="4"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="recommend" class="form-label required">Would you recommend us?</label>
+                    <select id="recommend" class="form-select" required>
+                        <option value="Very Likely">Very Likely</option>
+                        <option value="Likely">Likely</option>
+                        <option value="Unlikely">Unlikely</option>
+                    </select>
+                </div>
+
+                <div class="mb-3 grad-container">
+                    <div>
+                        <label for="grad-month" class="form-label">High School Graduation Month</label>
+                        <input list="months" id="grad-month" class="form-control">
+                        <datalist id="months">
+                            <option value="January">
+                            <option value="February">
+                            <option value="March">
+                            <option value="April">
+                            <option value="May">
+                            <option value="June">
+                            <option value="July">
+                            <option value="August">
+                            <option value="September">
+                            <option value="October">
+                            <option value="November">
+                            <option value="December">
+                        </datalist>
+                    </div>
+                    <div>
+                        <label for="grad-year" class="form-label">Year</label>
+                        <input type="text" id="grad-year" class="form-control" placeholder="Year">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="data" class="form-label required">Data (Enter 10 Comma-separated Numbers)</label>
+                    <input type="text" id="data" class="form-control" required
+                        placeholder="Enter 10 comma-separated numbers" pattern="(\d{1,3})(,\d{1,3}){9}"
+                        oninput="computeAverageAndMax()">
+                    <div id="error-message" class="error-message"></div>
+                </div>
+
+
+                <div class="mb-3 grad-container">
+                    <div>
+                        <label for="average" class="form-label">Average</label>
+                        <input type="text" id="average" class="form-control output-field" disabled>
+                    </div>
+                    <div>
+                        <label for="maximum" class="form-label">Maximum</label>
+                        <input type="text" id="maximum" class="form-control output-field" disabled>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success mt-4">Submit</button>
+                <button type="reset" id="reset" class="btn btn-success mt-4">Reset</button>
+
+            </form>
+        </div>
+    </div>
+
+    <footer class="text-white text-center p-3 mt-5">
+        <p>&copy; 2025 CS Department | Developed by Ramyashree Nandakumar |
+            <a href="http://98.84.1.36/cs_department.html">Back to CS
+                Department</a> | <a href="http://portfolio642.s3-website-us-east-1.amazonaws.com/"
+                class="text-white">Back to Portfolio</a>
+        </p>
+    </footer>
+
+    <script>
+
+        function setCookie(name, value, days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000)); // Expires in X days
+            document.cookie = `${name}=${encodeURIComponent(value)}; expires=${date.toUTCString()}; path=/; SameSite=Lax`;
+        }
+
+        function getCookie(name) {
+            let cookies = document.cookie.split('; ');
+            for (let cookie of cookies) {
+                let [key, value] = cookie.split('=');
+                if (key === name) return decodeURIComponent(value);
+            }
+            return null;
+        }
+
+        function deleteCookie(name) {
+            document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; SameSite=Lax`;
+        }
+
+        function getGreeting() {
+            let hour = new Date().getHours();
+            if (hour < 12) return "Good Morning";
+            else if (hour < 18) return "Good Afternoon";
+            else return "Good Evening";
+        }
+
+        //  Function to Show a Custom Popup for Name Confirmation
+        function showNameConfirmation(storedName) {
+            let modal = document.createElement("div");
+            modal.innerHTML = `
+        <div style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+                    background:white; padding:20px; box-shadow:0px 4px 10px rgba(0,0,0,0.3); 
+                    border-radius:10px; text-align:center; z-index:1000;">
+            <p style="margin-bottom:15px;">Is your name <b>${storedName}</b>?</p>
+            <button id="yesBtn" style="margin-right:10px; padding:10px 15px; background:#28a745; color:white; border:none; border-radius:5px; cursor:pointer;">
+                Yes, that’s me
+            </button>
+            <button id="noBtn" style="padding:10px 15px; background:#dc3545; color:white; border:none; border-radius:5px; cursor:pointer;">
+                No, change name
+            </button>
+        </div>
+    `;
+
+            document.body.appendChild(modal);
+
+            document.getElementById("yesBtn").onclick = function () {
+                document.body.removeChild(modal);
+                showGreeting(storedName);
+            };
+
+            document.getElementById("noBtn").onclick = function () {
+                document.body.removeChild(modal);
+                resetName();
+            };
+        }
+
+        //  Function to Show Greeting Without Reload
+        function showGreeting(name) {
+            let greetingDiv = document.getElementById("greeting");
+            greetingDiv.innerHTML = `<h1>${getGreeting()}, ${name}! Welcome to SWE642 Survey 
+        <a href="#" onclick="resetName()" style="font-size: 1.5rem; color: #007bff; margin-left: 5px;">Not you?</a>
+    </h1>`;
+
+        }
+
+        //  Main Function to Handle Name Greeting
+        function displayGreeting() {
+            let storedName = getCookie("username");
+
+            if (storedName) {
+                showNameConfirmation(storedName);
+            } else {
+                resetName();
+            }
+        }
+
+        //  Function to Reset Name with Custom Popup
+        function resetName() {
+            let modal = document.createElement("div");
+            modal.innerHTML = `
+        <div style="position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+                    background:white; padding:20px; box-shadow:0px 4px 10px rgba(0,0,0,0.3); 
+                    border-radius:10px; text-align:center; z-index:1000;">
+            <p style="margin-bottom:15px;">Please enter your correct name:</p>
+            <input type="text" id="newNameInput" style="padding:10px; width:80%; margin-bottom:10px; border:1px solid #ccc; border-radius:5px;">
+            <br>
+            <button id="saveBtn" style="margin-right:10px; padding:10px 15px; background:#007bff; color:white; border:none; border-radius:5px; cursor:pointer;">
+                Save
+            </button>
+            <button id="cancelBtn" style="padding:10px 15px; background:#6c757d; color:white; border:none; border-radius:5px; cursor:pointer;">
+                Cancel
+            </button>
+        </div>
+    `;
+
+            document.body.appendChild(modal);
+
+            document.getElementById("saveBtn").onclick = function () {
+                let newName = document.getElementById("newNameInput").value.trim();
+                if (newName !== "") {
+                    setCookie("username", newName, 7);
+                    document.body.removeChild(modal);
+                    showGreeting(newName);
+                }
+            };
+
+            document.getElementById("cancelBtn").onclick = function () {
+                document.body.removeChild(modal);
+            };
+        }
+
+        document.addEventListener("DOMContentLoaded", displayGreeting);
+
+        function computeAverageAndMax() {
+            const dataField = document.getElementById('data');
+            const averageField = document.getElementById('average');
+            const maximumField = document.getElementById('maximum');
+            const errorMessage = document.getElementById('error-message');
+
+            let dataValues = dataField.value.split(',')
+                .map(num => num.trim())  // Trim spaces
+                .filter(num => num !== "") // Remove empty entries
+                .map(num => parseInt(num)) // Convert to numbers
+                .filter(num => !isNaN(num)); // Remove NaN values
+
+            // If more than 10 numbers are entered, truncate extra numbers
+            if (dataValues.length > 10) {
+                errorMessage.textContent = "You can only enter 10 numbers!";
+                dataField.value = dataValues.slice(0, 10).join(',');  // Keep first 10 numbers only
+                setTimeout(() => errorMessage.textContent = "", 2000);  // Remove error after 2 sec
+                return;
+            }
+
+            // If numbers are out of range (1-100), show error
+            if (!dataValues.every(num => num >= 1 && num <= 100)) {
+                errorMessage.textContent = "Each number must be between 1 and 100!";
+                averageField.value = "";
+                maximumField.value = "";
+                return;
+            } else {
+                errorMessage.textContent = "";  // Remove error if input is valid
+            }
+
+            // Compute Average & Max only if there are exactly 10 valid numbers
+            if (dataValues.length === 10) {
+                const sum = dataValues.reduce((acc, num) => acc + num, 0);
+                averageField.value = (sum / 10).toFixed(2);
+                maximumField.value = Math.max(...dataValues);
+            }
+        }
+
+
+
+        function validateName(name) {
+            const namePattern = /^[A-Za-z\s]+$/;  // Allows alphabets and spaces
+            return namePattern.test(name.trim());
+        }
+
+
+        document.getElementById("zip").addEventListener("blur", function () {
+            let zipCode = this.value.trim();
+            let zipError = document.getElementById("zip-error");
+            let cityField = document.getElementById("city");
+            let stateField = document.getElementById("state");
+
+            // Reset previous values
+            cityField.value = "";
+            stateField.value = "";
+            zipError.textContent = "";
+
+            // Validate ZIP Code Format (Must be 5 digits)
+            if (!/^\d{5}$/.test(zipCode)) {
+                zipError.textContent = "Invalid ZIP Code!";
+                return;
+            }
+
+            // Fetch data from AWS Elastic Beanstalk Web Service
+            fetch(`http://swe642-webservice.us-east-1.elasticbeanstalk.com/zipcodes/${zipCode}`)
+                .then(response => response.ok ? response.json() : Promise.reject("Invalid ZIP"))
+                .then(data => {
+                    cityField.value = data.city;
+                    stateField.value = data.state;
+                })
+                .catch(error => zipError.textContent = "Invalid ZIP Code!");
+        });
+
+
+        document.getElementById("surveyForm").addEventListener("submit", function (event) {
+            event.preventDefault(); // Prevent form from submitting
+
+            let errors = []; // Store all validation errors
+            let isValid = true;
+
+            // Reset previous error styles
+            document.querySelectorAll(".is-invalid").forEach(field => field.classList.remove("is-invalid"));
+
+            // Validate Name (Only Alphabets)
+            let firstNameField = document.getElementById("firstName");
+            if (!/^[A-Za-z\s]+$/.test(firstNameField.value.trim())) {
+                errors.push("- First Name must contain only alphabets.");
+                firstNameField.classList.add("is-invalid");
+                firstNameField.value = ""; // Clear invalid field
+                isValid = false;
+            }
+
+            let lastNameField = document.getElementById("lastName");
+            if (!/^[A-Za-z\s]+$/.test(lastNameField.value.trim())) {
+                errors.push("- Last Name must contain only alphabets.");
+                lastNameField.classList.add("is-invalid");
+                lastNameField.value = ""; // Clear invalid field
+                isValid = false;
+            }
+
+            // ✅ Validate Date of Survey
+            let dateOfSurveyField = document.getElementById("dateOfSurvey");
+            if (!dateOfSurveyField.value) {
+                addError(dateOfSurveyField, "Please select the Date of Survey.");
+            }
+
+            // Validate Email Format
+            let emailField = document.getElementById("email");
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value.trim())) {
+                errors.push("- Enter a valid email address.");
+                emailField.classList.add("is-invalid");
+                emailField.value = "";
+                isValid = false;
+            }
+
+            // Validate Telephone Format (123-456-7890 or (123) 456-7890)
+            let telephoneField = document.getElementById("telephone");
+            let phonePattern = /^(\(\d{3}\)\s?|\d{3}-)\d{3}-\d{4}$/; // Matches (123) 456-7890 or 123-456-7890
+
+            if (!phonePattern.test(telephoneField.value.trim())) {
+                errors.push("- Enter a valid phone number (e.g., 123-456-7890).");
+                telephoneField.classList.add("is-invalid");
+                telephoneField.value = "";
+                isValid = false;
+            }
+
+
+
+            // Validate Address Fields (Only Alphanumeric)
+            ["address", "city", "state"].forEach(id => {
+                let field = document.getElementById(id);
+                if (!/^[A-Za-z0-9\s]+$/.test(field.value.trim())) {
+                    errors.push(`- ${id.charAt(0).toUpperCase() + id.slice(1)} should contain only letters, numbers, and spaces.`);
+                    field.classList.add("is-invalid");
+                    field.value = "";
+                    isValid = false;
+                }
+            });
+
+            // Validate At Least 2 Checkboxes Selected
+            let checkboxes = document.querySelectorAll(".checkbox-group input[type='checkbox']");
+            let checkedCount = Array.from(checkboxes).filter(checkbox => checkbox.checked).length;
+            if (checkedCount < 2) {
+                errors.push("- Select at least two options.");
+                isValid = false;
+            }
+
+            // Validate At Least 1 Radio Button Selected
+            let radios = document.querySelectorAll(".radio-group input[type='radio']");
+            if (!Array.from(radios).some(radio => radio.checked)) {
+                errors.push("- Select one option for how you heard about us.");
+                isValid = false;
+            }
+
+            // Show Errors in Alert Box (if any)
+            if (!isValid) {
+                alert("Please fix the following errors before submitting:\n\n" + errors.join("\n"));
+                return;
+            }
+
+            // If Everything is Valid, Submit the Form
+            alert("Form submitted successfully!");
+            this.submit();
+        });
+
+        // Reset Button: Clear the Form
+        document.getElementById("surveyForm").addEventListener("reset", function () {
+            // Clear all error styles
+            document.querySelectorAll(".is-invalid").forEach(field => field.classList.remove("is-invalid"));
+        });
+
+
+    </script>
+</body>
+
+</html>

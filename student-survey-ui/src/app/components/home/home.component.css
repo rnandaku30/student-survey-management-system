@@ -1,0 +1,68 @@
+.home{
+    background-size: cover;
+    text-align: center;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: azure;
+    padding: 20px 0;
+}
+
+.profile-pic {
+    width: 180px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #008080;
+    /* Teal Border */
+}
+
+.content {
+    max-width: 800px;
+    margin: auto;
+    text-align: left;
+    padding: 20px;
+}
+
+.section {
+    display: none;
+}
+
+.active {
+    display: block;
+}
+
+h1,
+h2,
+h4 {
+    color: #008080;
+    /* Teal */
+}
+
+a {
+    color: #008080;
+    /* Teal links */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.nav-link {
+    color: azure !important;
+}
+
+.btn-custom {
+    background-color: #008080;
+    border: none;
+}
+
+.btn-custom:hover {
+    background-color: #006666;
+}

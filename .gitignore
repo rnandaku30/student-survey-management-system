@@ -1,0 +1,42 @@
+# Node.js dependencies
+/node-server/node_modules/
+
+# macOS system files
+.DS_Store
+
+# IDE-specific files (for example, IntelliJ or VSCode)
+.idea/
+.vscode/
+
+# Operating system specific files
+Thumbs.db
+ehthumbs.db
+
+# Java files (For Maven/Gradle projects)
+target/
+*.iml
+
+# Logs
+*.log
+
+# ZIP archives
+*.zip
+
+# Sensitive files
+*.pem
+
+# Word docs, Excel, etc.
+*.docx
+*.xlsx
+
+# Environment variable files
+.env
+
+# Maven wrapper files (if you're not using them)
+mvnw*
+mvnw
+
+*.pem
+*.docx
+*environment.*
+*.zip

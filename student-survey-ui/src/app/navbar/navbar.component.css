@@ -1,0 +1,9 @@
+.navbar {
+    background-color: #006633 !important;
+    position: relative;
+    z-index: 1050; /* Ensures it's above other elements */
+}
+
+.navbar-nav .nav-link {
+    cursor: pointer !important; /* Force clickable behavior */
+}

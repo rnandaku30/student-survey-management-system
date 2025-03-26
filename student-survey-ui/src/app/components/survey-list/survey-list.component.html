@@ -1,0 +1,41 @@
+<div class="content">
+    <div class="header-box">
+        <h1>Survey List</h1>
+    </div>
+
+    <!-- Make the table responsive -->
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First Name</th>
+                    <th scope="col">Last Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Zip Code</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let survey of surveys">
+                    <th scope="row">{{ survey.id }}</th>
+                    <td>{{ survey.firstName }}</td>
+                    <td>{{ survey.lastName }}</td>
+                    <td>{{ survey.email }}</td>
+                    <td>{{ survey.zipCode }}</td>
+                    <td class="d-flex justify-content-start">
+                        <button class="btn btn-primary" (click)="viewSurvey(survey.id)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-warning" (click)="updateSurvey(survey.id)">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button class="btn btn-danger" (click)="confirmDelete(survey.id)">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

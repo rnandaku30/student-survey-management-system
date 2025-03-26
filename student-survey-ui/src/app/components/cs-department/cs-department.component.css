@@ -1,0 +1,33 @@
+body {
+    background-color: #f8f9fa;
+    text-align: center;
+    color: #333;
+}
+
+.header-box {
+    border: 5px solid #006633;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    background-color: #fff;
+}
+
+h1 {
+    color: #006633;
+}
+
+.content {
+    max-width: 900px;
+    margin: auto;
+    text-align: left;
+    padding: 20px;
+}
+
+.btn-secondary {
+    background-color: #FFCC33;
+    border-color: #FFCC33;
+}
+
+.btn-secondary:hover {
+    background-color: #006633;
+    border-color: #006633;
+}
