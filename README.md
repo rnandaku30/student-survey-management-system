@@ -142,11 +142,13 @@ The .env file is required to run the Spring Boot backend locally. A sample.env f
 
 ## 7. Project Structure
 
+```bash
 student-survey-app/
-│── node-server/            # Express server for zip code lookup
-│── student-survey-backend/  # Spring Boot backend for survey storage
-│── student-survey-ui/       # Angular frontend for survey form
-│── README.md               # Project documentation
+│── node-server/          # Express server for zip code lookup
+│── student-survey-backend/ # Spring Boot backend for survey storage
+│── student-survey-ui/    # Angular frontend for survey form
+│── README.md            # Project documentation
+```
 
 ## 8. Conclusion
 This project enables students to fill out a survey and submit it through the Angular UI, which communicates with the Spring Boot backend. The zip code data is fetched from the node-server Express API, which provides city and state details based on the entered zip code.
